@@ -1,10 +1,21 @@
 const offersData = [
     { card: 'Chase Freedom', store: 'Staples', percent: 5, endDate: '12/29/2024', online: 'Y', max: 8 },
-    { card: 'Discover', store: 'Event Tickets Center', percent: 10, endDate: '1/28/2025', online: 'N', max: 50 }
+    { card: 'Chase Freedom', store: 'Event Tickets Center', percent: 10, endDate: '1/28/2025', online: 'N', max: 50 },
+    { card: 'Discover', store: 'Amazon', percent: 15, endDate: '3/15/2025', online: 'Y', max: 25 },
+    { card: 'Discover', store: 'Walmart', percent: 7, endDate: '4/30/2025', online: 'N', max: 12 }
 ];
 
 const offersContainer = document.getElementById('offers');
 const cardSelect = document.getElementById('cardSelect');
+
+// Populate credit card options dynamically
+const uniqueCards = [...new Set(offersData.map(offer => offer.card))];
+uniqueCards.forEach(card => {
+    const option = document.createElement('option');
+    option.value = card;
+    option.textContent = card;
+    cardSelect.appendChild(option);
+});
 
 function displayOffers(filter) {
     offersContainer.innerHTML = '';
@@ -29,4 +40,4 @@ cardSelect.addEventListener('change', (e) => {
 });
 
 // Initial Load
-displayOffers('all');
+cardSelect.dispatchEvent(new Event('change'));
