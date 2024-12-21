@@ -2,10 +2,7 @@ const offersData = [
     { card: 'Chase Freedom', store: 'Staples', percent: 5, endDate: '12/29/2024', online: 'Y', max: 8 },
     { card: 'Chase Freedom', store: 'Event Tickets Center', percent: 10, endDate: '1/28/2025', online: 'N', max: 50 },
     { card: 'Discover', store: 'Amazon', percent: 15, endDate: '3/15/2025', online: 'Y', max: 25 },
-    { card: 'Discover', store: 'Walmart', percent: 7, endDate: '4/30/2025', online: 'N', max: 12 },
-    { card: 'Discover', store: 'burlington', percent: 7, endDate: '4/30/2025', online: 'N', max: 12 },
-    { card: 'Chase Freedom', store: 'costco', percent: 7, endDate: '4/30/2025', online: 'N', max: 12 }
-
+    { card: 'Discover', store: 'Walmart', percent: 7, endDate: '4/30/2025', online: 'N', max: 12 }
 ];
 
 const offersContainer = document.getElementById('offers');
@@ -13,7 +10,7 @@ const cardSelect = document.getElementById('cardSelect');
 const storeSelect = document.createElement('select');
 const percentSelect = document.createElement('select');
 
-// Populate filter containers dynamically
+// Insert filters into the DOM
 document.querySelector('.container').insertBefore(storeSelect, offersContainer);
 document.querySelector('.container').insertBefore(percentSelect, offersContainer);
 
@@ -23,29 +20,44 @@ percentSelect.id = 'percentSelect';
 storeSelect.innerHTML = '<option value="all">All</option>';
 percentSelect.innerHTML = '<option value="all">All</option>';
 
-const uniqueCards = [...new Set(offersData.map(offer => offer.card))];
-uniqueCards.forEach(card => {
-    const option = document.createElement('option');
-    option.value = card;
-    option.textContent = card;
-    cardSelect.appendChild(option);
-});
+function populateCardOptions() {
+    cardSelect.innerHTML = '<option value="all">All</option>';
+    const uniqueCards = [...new Set(offersData.map(offer => offer.card))];
+    uniqueCards.forEach(card => {
+        const option = document.createElement('option');
+        option.value = card;
+        option.textContent = card;
+        cardSelect.appendChild(option);
+    });
+}
 
-const uniqueStores = [...new Set(offersData.map(offer => offer.store))];
-uniqueStores.forEach(store => {
-    const option = document.createElement('option');
-    option.value = store;
-    option.textContent = store;
-    storeSelect.appendChild(option);
-});
+function updateDependentFilters() {
+    const selectedCard = cardSelect.value;
+    
+    const filteredOffers = selectedCard === 'all' 
+        ? offersData 
+        : offersData.filter(offer => offer.card === selectedCard);
+    
+    // Update Store Filter
+    const uniqueStores = [...new Set(filteredOffers.map(offer => offer.store))];
+    storeSelect.innerHTML = '<option value="all">All</option>';
+    uniqueStores.forEach(store => {
+        const option = document.createElement('option');
+        option.value = store;
+        option.textContent = store;
+        storeSelect.appendChild(option);
+    });
 
-const uniquePercents = [...new Set(offersData.map(offer => offer.percent))];
-uniquePercents.sort((a, b) => a - b).forEach(percent => {
-    const option = document.createElement('option');
-    option.value = percent;
-    option.textContent = `${percent}%`;
-    percentSelect.appendChild(option);
-});
+    // Update Percent Filter
+    const uniquePercents = [...new Set(filteredOffers.map(offer => offer.percent))];
+    percentSelect.innerHTML = '<option value="all">All</option>';
+    uniquePercents.sort((a, b) => a - b).forEach(percent => {
+        const option = document.createElement('option');
+        option.value = percent;
+        option.textContent = `${percent}%`;
+        percentSelect.appendChild(option);
+    });
+}
 
 function displayOffers() {
     const cardFilter = cardSelect.value;
@@ -73,9 +85,14 @@ function displayOffers() {
     });
 }
 
-cardSelect.addEventListener('change', displayOffers);
+cardSelect.addEventListener('change', () => {
+    updateDependentFilters();
+    displayOffers();
+});
 storeSelect.addEventListener('change', displayOffers);
 percentSelect.addEventListener('change', displayOffers);
 
 // Initial Load
+populateCardOptions();
+updateDependentFilters();
 displayOffers();
