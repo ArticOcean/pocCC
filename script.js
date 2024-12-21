@@ -1,6 +1,6 @@
 const offersData = [
     { card: 'Chase Freedom', store: 'Staples', percent: 5, endDate: '12/29/2024', online: 'Y', max: 8 },
-    { card: 'Chase Freedom', store: 'Event Tickets Center', percent: 10, endDate: '1/28/2025', online: 'N', max: 50 }
+    { card: 'Discover', store: 'Event Tickets Center', percent: 10, endDate: '1/28/2025', online: 'N', max: 50 }
 ];
 
 const offersContainer = document.getElementById('offers');
