@@ -1,8 +1,10 @@
 const offersData = [
-    { card: 'Chase Freedom', store: 'Staples', percent: 5, endDate: '12/29/2024', online: 'Y', max: 8 },
-    { card: 'Chase Freedom', store: 'Event Tickets Center', percent: 10, endDate: '1/28/2025', online: 'N', max: 50 },
-    { card: 'Discover', store: 'Amazon', percent: 15, endDate: '3/15/2025', online: 'Y', max: 25 },
-    { card: 'Discover', store: 'Walmart', percent: 7, endDate: '4/30/2025', online: 'N', max: 12 }
+    { card: 'Freedom', store: 'Staples', percent: 5, endDate: '12/29/2024', online: 'Y', max: 8 },
+    { card: 'Freedom', store: 'Event Tickets Center', percent: 10, endDate: '1/28/2025', online: 'N', max: 50 },
+    { card: 'Dis', store: 'Amazon', percent: 15, endDate: '3/15/2025', online: 'Y', max: 25 },
+    { card: 'Dis', store: 'Walmart', percent: 7, endDate: '4/30/2025', online: 'N', max: 12 },
+        { card: 'Cap', store: 'Amazon', percent: 15, endDate: '3/15/2025', online: 'Y', max: 25 },
+
 ];
 
 const offersContainer = document.getElementById('offers');
