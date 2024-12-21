@@ -17,6 +17,9 @@ document.querySelector('.container').insertBefore(percentSelect, offersContainer
 storeSelect.id = 'storeSelect';
 percentSelect.id = 'percentSelect';
 
+storeSelect.innerHTML = '<option value="all">All</option>';
+percentSelect.innerHTML = '<option value="all">All</option>';
+
 const uniqueCards = [...new Set(offersData.map(offer => offer.card))];
 uniqueCards.forEach(card => {
     const option = document.createElement('option');
