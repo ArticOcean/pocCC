@@ -3,7 +3,9 @@ const offersData = [
     { card: 'Freedom', store: 'Event Tickets Center', percent: 10, endDate: '1/28/2025', online: 'N', max: 50 },
     { card: 'Dis', store: 'Amazon', percent: 15, endDate: '3/15/2025', online: 'Y', max: 25 },
     { card: 'Dis', store: 'Walmart', percent: 7, endDate: '4/30/2025', online: 'N', max: 12 },
-        { card: 'Cap', store: 'Amazon', percent: 15, endDate: '3/15/2025', online: 'Y', max: 25 },
+        { card: 'Cap', store: 'Amazon1', percent: 15, endDate: '3/15/2025', online: 'Y', max: 25 },
+            { card: 'Cap', store: 'Amazon2', percent: 15, endDate: '3/15/2025', online: 'Y', max: 25 }
+
 
 ];
 
